@@ -132,3 +132,20 @@ void inverse(float adj[3][3], float det, float inv[3][3])
 
 
 }
+
+void geometria() {
+
+
+
+}
+
+void analisis() {
+
+
+}
+
+void prob() {
+
+
+}
+
