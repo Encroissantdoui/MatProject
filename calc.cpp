@@ -42,7 +42,7 @@ int main() {
 /*
 
 void matrices() {
-
+testest
 float determinant(float matrix[3][3]);
 void adjg(float matrix[3][3], float adj[3][3]);
 void inverse(float adj[3][3], float det, float inv[3][3]);
