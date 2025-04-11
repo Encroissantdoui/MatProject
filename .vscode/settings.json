@@ -43,7 +43,8 @@
         "system_error": "cpp",
         "text_encoding": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "algorithm": "cpp"
     },
     
     
