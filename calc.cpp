@@ -52,7 +52,7 @@ int main()
     float matrix[3][3];
     float adj[3][3];
     float inv[3][3];
-    
+    branch
     
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
