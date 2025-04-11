@@ -4,12 +4,12 @@
 #include <vector>
 #include <algorithm>
 
-
+/*
 void matrices();
 void geometria();
 void analisis();
 void prob();
-
+*/
 
 int main() {
     std::cout<<"Seleccionar el bloque para calculos: \n1. Algebra \n2. Geometria \n3. Analisis \n4. Proabilidades"<<std::endl;
