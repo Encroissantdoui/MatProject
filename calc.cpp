@@ -130,7 +130,7 @@ int main() {
     int A[3][3], B[3][3], C[3][3] = {0};
 
 
-    cout << "Introdueix els valors de la matriu A (3x3):" << endl;
+    cout << "Introduce matriz A (3x3):" << endl;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             cout << "A[" << i << "][" << j << "] = ";
@@ -139,7 +139,7 @@ int main() {
     }
 
     // Entrada de valors per a la matriu B
-    cout << "Introdueix els valors de la matriu B (3x3):" << endl;
+    cout << "Introduce matriz B (3x3):" << endl;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             cout << "B[" << i << "][" << j << "] = ";
@@ -158,7 +158,7 @@ int main() {
     }
 
     
-    cout << "La matriu resultat C és:" << endl;
+    cout << "Matriz resultado C es:" << endl;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             cout << "matriuC[" << i << "][" << j << "] = " << C[i][j] << endl;
