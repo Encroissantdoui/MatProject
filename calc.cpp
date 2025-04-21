@@ -38,57 +38,57 @@ void matrices() {
     void inverse(float matrix[3][3], float det, float inv[3][3]);
     void inverse2x2(float matrix[2][2], float det, float inv[2][2]);
 
-    float MATA2x2[2][2] = {0}, MATB2x2[2][2] = {0};
-    float MATA3x3[3][3] = {0}, MATB3x3[3][3] = {0};
-    int sizeMATA = 0, sizeMATB = 0;
+    float MatA2x2[2][2] = {0}, MatB2x2[2][2] = {0};
+    float MatA3x3[3][3] = {0}, MatB3x3[3][3] = {0};
+    int sizeMatA = 0, sizeMatB = 0;
 
-    // Input for MATA
-    std::cout << "Seleccione el tamano de MATA: \n1. 2x2 \n2. 3x3" << std::endl;
-    std::cin >> sizeMATA;
+    // Input for MatA
+    std::cout << "Seleccione el tamano de MatA: \n1. 2x2 \n2. 3x3" << std::endl;
+    std::cin >> sizeMatA;
 
-    if (sizeMATA == 1) {
-        std::cout << "Introduce los valores para MATA (2x2):" << std::endl;
+    if (sizeMatA == 1) {
+        std::cout << "Introduce los valores para MatA (2x2):" << std::endl;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                std::cout << "MATA[" << i << "][" << j << "] = ";
-                std::cin >> MATA2x2[i][j];
+                std::cout << "MatA[" << i << "][" << j << "] = ";
+                std::cin >> MatA2x2[i][j];
             }
         }
-    } else if (sizeMATA == 2) {
-        std::cout << "Introduce los valores para MATA (3x3):" << std::endl;
+    } else if (sizeMatA == 2) {
+        std::cout << "Introduce los valores para MatA (3x3):" << std::endl;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                std::cout << "MATA[" << i << "][" << j << "] = ";
-                std::cin >> MATA3x3[i][j];
+                std::cout << "MatA[" << i << "][" << j << "] = ";
+                std::cin >> MatA3x3[i][j];
             }
         }
     } else {
-        std::cout << "Tamano no valido para MATA.\n";
+        std::cout << "Tamano no valido para MatA.\n";
         return;
     }
 
-    // Input for MATB
-    std::cout << "Seleccione el tamano de MATB: \n1. 2x2 \n2. 3x3" << std::endl;
-    std::cin >> sizeMATB;
+    // Input for MatB
+    std::cout << "Seleccione el tamano de MatB: \n1. 2x2 \n2. 3x3" << std::endl;
+    std::cin >> sizeMatB;
 
-    if (sizeMATB == 1) {
-        std::cout << "Introduce los valores para MATB (2x2):" << std::endl;
+    if (sizeMatB == 1) {
+        std::cout << "Introduce los valores para MatB (2x2):" << std::endl;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                std::cout << "MATB[" << i << "][" << j << "] = ";
-                std::cin >> MATB2x2[i][j];
+                std::cout << "MatB[" << i << "][" << j << "] = ";
+                std::cin >> MatB2x2[i][j];
             }
         }
-    } else if (sizeMATB == 2) {
-        std::cout << "Introduce los valores para MATB (3x3):" << std::endl;
+    } else if (sizeMatB == 2) {
+        std::cout << "Introduce los valores para MatB (3x3):" << std::endl;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                std::cout << "MATB[" << i << "][" << j << "] = ";
-                std::cin >> MATB3x3[i][j];
+                std::cout << "MatB[" << i << "][" << j << "] = ";
+                std::cin >> MatB3x3[i][j];
             }
         }
     } else {
-        std::cout << "Tamano no valido para MATB.\n";
+        std::cout << "Tamano no valido para MatB.\n";
         return;
     }
 
@@ -104,21 +104,21 @@ void matrices() {
 
         switch (opcion) {
             case 1: {
-                std::cout << "Seleccione la matriz para calcular el determinante:\n1. MATA\n2. MATB\n";
+                std::cout << "Seleccione la matriz para calcular el determinante:\n1. MatA\n2. MatB\n";
                 int matrizSeleccionada;
                 std::cin >> matrizSeleccionada;
 
                 if (matrizSeleccionada == 1) {
-                    if (sizeMATA == 1) {
-                        std::cout << "Determinante de MATA (2x2): " << determinant2x2(MATA2x2) << std::endl;
-                    } else if (sizeMATA == 2) {
-                        std::cout << "Determinante de MATA (3x3): " << determinant3x3(MATA3x3) << std::endl;
+                    if (sizeMatA == 1) {
+                        std::cout << "Determinante de MatA (2x2): " << determinant2x2(MatA2x2) << std::endl;
+                    } else if (sizeMatA == 2) {
+                        std::cout << "Determinante de MatA (3x3): " << determinant3x3(MatA3x3) << std::endl;
                     }
                 } else if (matrizSeleccionada == 2) {
-                    if (sizeMATB == 1) {
-                        std::cout << "Determinante de MATB (2x2): " << determinant2x2(MATB2x2) << std::endl;
-                    } else if (sizeMATB == 2) {
-                        std::cout << "Determinante de MATB (3x3): " << determinant3x3(MATB3x3) << std::endl;
+                    if (sizeMatB == 1) {
+                        std::cout << "Determinante de MatB (2x2): " << determinant2x2(MatB2x2) << std::endl;
+                    } else if (sizeMatB == 2) {
+                        std::cout << "Determinante de MatB (3x3): " << determinant3x3(MatB3x3) << std::endl;
                     }
                 } else {
                     std::cout << "Opcion no valida." << std::endl;
@@ -126,19 +126,19 @@ void matrices() {
                 break;
             }
             case 2: {
-                std::cout << "Seleccione la matriz para calcular la inversa:\n1. MATA\n2. MATB\n";
+                std::cout << "Seleccione la matriz para calcular la inversa:\n1. MatA\n2. MatB\n";
                 int matrizSeleccionada;
                 std::cin >> matrizSeleccionada;
 
                 if (matrizSeleccionada == 1) {
-                    if (sizeMATA == 1) {
-                        float det = determinant2x2(MATA2x2);
+                    if (sizeMatA == 1) {
+                        float det = determinant2x2(MatA2x2);
                         if (det == 0) {
                             std::cout << "La matriz no tiene inversa (determinante = 0)." << std::endl;
                         } else {
                             float inv[2][2];
-                            inverse2x2(MATA2x2, det, inv);
-                            std::cout << "Inversa de MATA (2x2):" << std::endl;
+                            inverse2x2(MatA2x2, det, inv);
+                            std::cout << "Inversa de MatA (2x2):" << std::endl;
                             for (int i = 0; i < 2; i++) {
                                 for (int j = 0; j < 2; j++) {
                                     std::cout << inv[i][j] << " ";
@@ -146,14 +146,14 @@ void matrices() {
                                 std::cout << std::endl;
                             }
                         }
-                    } else if (sizeMATA == 2) {
-                        float det = determinant3x3(MATA3x3);
+                    } else if (sizeMatA == 2) {
+                        float det = determinant3x3(MatA3x3);
                         if (det == 0) {
                             std::cout << "La matriz no tiene inversa (determinante = 0)." << std::endl;
                         } else {
                             float inv[3][3];
-                            inverse(MATA3x3, det, inv);
-                            std::cout << "Inversa de MATA (3x3):" << std::endl;
+                            inverse(MatA3x3, det, inv);
+                            std::cout << "Inversa de MatA (3x3):" << std::endl;
                             for (int i = 0; i < 3; i++) {
                                 for (int j = 0; j < 3; j++) {
                                     std::cout << inv[i][j] << " ";
@@ -163,14 +163,14 @@ void matrices() {
                         }
                     }
                 } else if (matrizSeleccionada == 2) {
-                    if (sizeMATB == 1) {
-                        float det = determinant2x2(MATB2x2);
+                    if (sizeMatB == 1) {
+                        float det = determinant2x2(MatB2x2);
                         if (det == 0) {
                             std::cout << "La matriz no tiene inversa (determinante = 0)." << std::endl;
                         } else {
                             float inv[2][2];
-                            inverse2x2(MATB2x2, det, inv);
-                            std::cout << "Inversa de MATB (2x2):" << std::endl;
+                            inverse2x2(MatB2x2, det, inv);
+                            std::cout << "Inversa de MatB (2x2):" << std::endl;
                             for (int i = 0; i < 2; i++) {
                                 for (int j = 0; j < 2; j++) {
                                     std::cout << inv[i][j] << " ";
@@ -178,14 +178,14 @@ void matrices() {
                                 std::cout << std::endl;
                             }
                         }
-                    } else if (sizeMATB == 2) {
-                        float det = determinant3x3(MATB3x3);
+                    } else if (sizeMatB == 2) {
+                        float det = determinant3x3(MatB3x3);
                         if (det == 0) {
                             std::cout << "La matriz no tiene inversa (determinante = 0)." << std::endl;
                         } else {
                             float inv[3][3];
-                            inverse(MATB3x3, det, inv);
-                            std::cout << "Inversa de MATB (3x3):" << std::endl;
+                            inverse(MatB3x3, det, inv);
+                            std::cout << "Inversa de MatB (3x3):" << std::endl;
                             for (int i = 0; i < 3; i++) {
                                 for (int j = 0; j < 3; j++) {
                                     std::cout << inv[i][j] << " ";
