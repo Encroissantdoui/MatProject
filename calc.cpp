@@ -246,5 +246,3 @@ void analisis() {
     // Aqui se implementaran las funciones de analisis.
 }
 
-// void prob() {
-// }
