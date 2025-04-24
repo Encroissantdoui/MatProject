@@ -1396,7 +1396,7 @@ void angulo() {
 
                 float angle = acos(dotProduct / (magnitude1 * magnitude2));
 
-                std::cout << "El angulo entre los dos vectores es: " << angle * (180/M_PI) << " radianes.\n";
+                std::cout << "El angulo entre los dos vectores es: " << angle * (180/M_PI) << " grados.\n";
                 break;
             }
             case 2:
@@ -1462,7 +1462,7 @@ void angulo() {
 
                 float angle = asin(dotProduct / (magnitudeVector * magnitudePlaneNormal));
 
-                std::cout << "El angulo entre el vector y el plano es: " << angle * (180/M_PI) << " radianes.\n";
+                std::cout << "El angulo entre el vector y el plano es: " << angle * (180/M_PI) << " grados.\n";
                 break;
             }
             case 3:
