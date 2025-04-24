@@ -60,6 +60,7 @@ void matrices() {
     void inverse3x3(const std::vector<std::vector<float>>& matrix, float det, std::vector<std::vector<float>>& inv);
     void adjointAndInverse3x3(const std::vector<std::vector<float>>& matrix, std::vector<std::vector<float>>& adj, std::vector<std::vector<float>>& inv);
     void IntroducirDatosMatrices();
+    void mostrarMatrices();
   
 
     while (true) {
@@ -67,6 +68,7 @@ void matrices() {
         std::cout << "1. Introducir datos\n";
         std::cout << "2. Realizar calculos\n";
         std::cout << "3. Volver al menu principal\n";
+        std::cout << "4. Mostrar matrices\n";
         std::cout << "Seleccione una opcion: ";
         int opcionPrincipal;
         std::cin >> opcionPrincipal;
@@ -351,6 +353,10 @@ void matrices() {
             case 3:
                 return;
 
+            case 4:
+                mostrarMatrices();
+                break;
+
             default:
                 std::cout << "Opcion no valida." << std::endl;
         }
@@ -417,6 +423,27 @@ void IntroducirDatosMatrices() {
                 else if (index == 3) std::cout << MatD[i][j] << " ";
             }
             std::cout << std::endl;
+        }
+    }
+}
+
+void mostrarMatrices() {
+    std::cout << "Matrices introducidas:\n";
+
+    std::vector<std::vector<std::vector<float>>> matrices = {MatA, MatB, MatC, MatD};
+    std::string nombres[] = {"MatA", "MatB", "MatC", "MatD"};
+
+    for (int i = 0; i < 4; i++) {
+        std::cout << nombres[i] << ":\n";
+        if (matrices[i].empty()) {
+            std::cout << "No definida\n";
+        } else {
+            for (int j = 0; j < matrices[i].size(); j++) {
+                for (int k = 0; k < matrices[i][j].size(); k++) {
+                    std::cout << matrices[i][j][k] << " ";
+                }
+                std::cout << "\n";
+            }
         }
     }
 }
@@ -540,8 +567,6 @@ void geometria() {
     void MostrarDatos();
     void distancia();
     void angulo();
-    void simetria();
-    void proyeccion_ortogonal();
     void rango();
     void interseccion();
     void volumen_area();
@@ -607,12 +632,10 @@ void geometria() {
                 std::cout << "Seleccione opcion:" << std::endl;
                 std::cout << "1. Distancia" << std::endl;
                 std::cout << "2. Angulo" << std::endl;
-                std::cout << "3. Simetria" << std::endl;
-                std::cout << "4. Proyeccion ortogonal" << std::endl;
+                std::cout << "3. Interseccion" << std::endl;
+                std::cout << "4. Volumen y area" << std::endl;
                 std::cout << "5. Rango" << std::endl;
-                std::cout << "6. Interseccion" << std::endl;
-                std::cout << "7. Volumen y Area" << std::endl;
-                std::cout << "8. Regresar al menu anterior" << std::endl;
+                std::cout << "6. Regresar al menu anterior" << std::endl;
 
                 int opcionCalculo;
                 std::cin >> opcionCalculo;
@@ -627,26 +650,18 @@ void geometria() {
                         break;
 
                     case 3: 
-                        //simetria();
+                        //interseccion();
                         break;
 
                     case 4: 
-                        //proyeccion_ortogonal();
+                        //volumen_area();
                         break;
 
                     case 5: 
                         //rango();
                         break;
 
-                    case 6: 
-                        //interseccion();
-                        break;
-
-                    case 7: 
-                        //volumen_area();
-                        break;
-
-                    case 8:
+                    case 6:
                         break;
 
 
@@ -1322,6 +1337,7 @@ void distancia() {
 
 
 void angulo() {
+
     while (true) {
         std::cout << "\nMenu de angulo:\n";
         std::cout << "1. Angulo entre vectores\n";
@@ -1472,3 +1488,4 @@ void angulo() {
         }
     }
 }
+
