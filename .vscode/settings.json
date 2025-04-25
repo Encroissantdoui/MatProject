@@ -65,7 +65,8 @@
         "limits": "cpp",
         "numbers": "cpp",
         "ostream": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "sstream": "cpp"
     },
     
     

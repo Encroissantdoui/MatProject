@@ -8,6 +8,7 @@
 
 void matrices();
 void geometria();
+void sistema_lineal();
 
 
 
@@ -20,7 +21,8 @@ int main() {
         std::cout << "Seleccionar el bloque para calculos:\n";
         std::cout << "1. Algebra\n";
         std::cout << "2. Geometria\n";
-        std::cout << "3. Terminar\n";
+        std::cout << "3. Sistemas de ecuaciones lineales\n";
+        std::cout << "4. Terminar\n";
 
         int bloque;
 
@@ -34,7 +36,12 @@ int main() {
                 geometria();
                 break;
             
-            case 3: 
+
+            case 3:
+                sistema_lineal();
+                break;
+
+            case 4: 
                 std::cout << "Terminando el programa..." << std::endl;
                 return 0;
 
@@ -50,7 +57,7 @@ int main() {
 
 
 std::vector<std::vector<float>> MatA, MatB, MatC, MatD;
-std::vector<int> rows(4, 0), cols(4, 0); // Number of rows and columns for each matrix
+std::vector<int> rows(4, 0), cols(4, 0);
 
 void matrices() {
 
@@ -556,6 +563,14 @@ void adjointAndInverse3x3(const std::vector<std::vector<float>>& matrix, std::ve
 
 
 
+
+
+
+
+
+
+
+
 void geometria() {
 
     //DECLARACIONES
@@ -567,8 +582,7 @@ void geometria() {
     void MostrarDatos();
     void distancia();
     void angulo();
-    void rango();
-    void interseccion();
+    void posicion_relativa();
     void volumen_area();
 
   
@@ -632,10 +646,10 @@ void geometria() {
                 std::cout << "Seleccione opcion:" << std::endl;
                 std::cout << "1. Distancia" << std::endl;
                 std::cout << "2. Angulo" << std::endl;
-                std::cout << "3. Interseccion" << std::endl;
+                std::cout << "3. Posicion relativa" << std::endl;
                 std::cout << "4. Volumen y area" << std::endl;
-                std::cout << "5. Rango" << std::endl;
-                std::cout << "6. Regresar al menu anterior" << std::endl;
+                std::cout << "5. Salir" << std::endl;
+
 
                 int opcionCalculo;
                 std::cin >> opcionCalculo;
@@ -650,32 +664,28 @@ void geometria() {
                         break;
 
                     case 3: 
-                        //interseccion();
+                        posicion_relativa();
                         break;
 
                     case 4: 
-                        //volumen_area();
+                        volumen_area();
                         break;
 
-                    case 5: 
-                        //rango();
-                        break;
 
-                    case 6:
+                    case 5:
+                       
                         break;
 
 
                     default:
                         std::cout << "Opcion no valida." << std::endl;
                 }
-                if (opcionCalculo != 8) {
-                    goto menu_geometria2;
-                }
+
 
                 break;
             
             case 3:
-                // Go back to main menu
+
                 return;
 
             case 4:
@@ -1083,13 +1093,9 @@ void IntroducirPlanos() {
 
         planeNormals[planoSeleccionado - 1] = vectorNormal;
 
-        // Store the equation as a string in the global variable
-        planoecuacion[planoSeleccionado - 1] = std::to_string(A) + "x + " +
-                            std::to_string(B) + "y + " +
-                            std::to_string(C) + "z + " +
-                            std::to_string(D) + " = 0";
 
-        // Output the equation
+        planoecuacion[planoSeleccionado - 1] = std::to_string(A) + "x + " + std::to_string(B) + "y + " + std::to_string(C) + "z + " + std::to_string(D) + " = 0";
+
         std::cout << "Plano Pla" << planoSeleccionado << " definido por:" << std::endl;
         std::cout << "Vector normal: (" << vectorNormal[0] << ", " << vectorNormal[1] << ", " << vectorNormal[2] << ")" << std::endl;
         std::cout << "Punto: (" << punto[0] << ", " << punto[1] << ", " << punto[2] << ")" << std::endl;
@@ -1145,7 +1151,6 @@ void MostrarDatos() {
 void distancia() {
 
 
-
     while (true) {
         std::cout << "\nMenu de distancia:\n";
         std::cout << "1. Distancia entre puntos\n";
@@ -1189,7 +1194,7 @@ void distancia() {
             else if (idx2 == 3) p2 = PC;
             else if (idx2 == 4) p2 = PD;
 
-            // Calculate the distance between the two points
+
             float distancia = sqrt(pow(p2[0] - p1[0], 2) + pow(p2[1] - p1[1], 2) + pow(p2[2] - p1[2], 2));
 
             std::cout << "La distancia entre los puntos seleccionados es: " << distancia << "\n";
@@ -1317,7 +1322,7 @@ void distancia() {
                     break;
                 }
 
-                // Calculate the distance
+                
                 float distance = numerator / denominator;
 
                 std::cout << "La distancia entre el punto y el plano es: " << distance << "\n";
@@ -1325,7 +1330,7 @@ void distancia() {
             break;
 
             case 4:
-                return; // Regresar al menu anterior
+                return; 
 
             default:
                 std::cout << "Opcion no valida. Intente de nuevo.\n";
@@ -1489,3 +1494,569 @@ void angulo() {
     }
 }
 
+
+void volumen_area() {
+
+    while (true) {
+        std::cout << "\nMenu de volumen y area:\n";
+        std::cout << "1. Area de paralelogramo\n";
+        std::cout << "2. Area de triangulo\n";
+        std::cout << "3. Volumen de tetraedro\n";
+        std::cout << "4. Volumen de paralelepipedo\n";
+        std::cout << "5. Regresar al menu anterior\n";
+        std::cout << "Seleccione una opcion: ";
+
+        int opcion;
+        std::cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+            {
+                std::cout << "Seleccione el primer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector1Seleccionado;
+                std::cin >> vector1Seleccionado;
+
+                std::vector<float> vector1;
+                switch (vector1Seleccionado) {
+                    case 1: vector1 = VA; break;
+                    case 2: vector1 = VB; break;
+                    case 3: vector1 = VC; break;
+                    case 4: vector1 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el primer vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el segundo vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector2Seleccionado;
+                std::cin >> vector2Seleccionado;
+
+                std::vector<float> vector2;
+                switch (vector2Seleccionado) {
+                    case 1: vector2 = VA; break;
+                    case 2: vector2 = VB; break;
+                    case 3: vector2 = VC; break;
+                    case 4: vector2 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el segundo vector." << std::endl;
+                        break;
+                }
+
+                // Calculate cross product
+                std::vector<float> crossProduct(3);
+                crossProduct[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+                crossProduct[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+                crossProduct[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+                // Calculate magnitude of the cross product (area)
+                float area = std::sqrt(crossProduct[0] * crossProduct[0] + crossProduct[1] * crossProduct[1] + crossProduct[2] * crossProduct[2]);
+
+                std::cout << "El area del paralelogramo definido por los dos vectores es: " << area << "\n";
+                break;
+            }
+            case 2:
+            {
+
+                std::cout << "Seleccione el primer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector1Seleccionado;
+                std::cin >> vector1Seleccionado;
+
+                std::vector<float> vector1;
+                switch (vector1Seleccionado) {
+                    case 1: vector1 = VA; break;
+                    case 2: vector1 = VB; break;
+                    case 3: vector1 = VC; break;
+                    case 4: vector1 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el primer vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el segundo vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector2Seleccionado;
+                std::cin >> vector2Seleccionado;
+
+                std::vector<float> vector2;
+                switch (vector2Seleccionado) {
+                    case 1: vector2 = VA; break;
+                    case 2: vector2 = VB; break;
+                    case 3: vector2 = VC; break;
+                    case 4: vector2 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el segundo vector." << std::endl;
+                        break;
+                }
+
+                // Calculate cross product
+                std::vector<float> crossProduct(3);
+                crossProduct[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+                crossProduct[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+                crossProduct[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+                // Calculate magnitude of the cross product (area)
+                float area = std::sqrt(crossProduct[0] * crossProduct[0] + crossProduct[1] * crossProduct[1] + crossProduct[2] * crossProduct[2]);
+
+                std::cout << "El area del triangulo definido por los dos vectores es: " << (area/2) << "\n";
+
+
+
+
+                break;
+            }
+            case 3:
+            {
+                std::cout << "Seleccione el primer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector1Seleccionado;
+                std::cin >> vector1Seleccionado;
+
+                std::vector<float> vector1;
+                switch (vector1Seleccionado) {
+                    case 1: vector1 = VA; break;
+                    case 2: vector1 = VB; break;
+                    case 3: vector1 = VC; break;
+                    case 4: vector1 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el primer vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el segundo vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector2Seleccionado;
+                std::cin >> vector2Seleccionado;
+
+                std::vector<float> vector2;
+                switch (vector2Seleccionado) {
+                    case 1: vector2 = VA; break;
+                    case 2: vector2 = VB; break;
+                    case 3: vector2 = VC; break;
+                    case 4: vector2 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el segundo vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el tercer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector3Seleccionado;
+                std::cin >> vector3Seleccionado;
+
+                std::vector<float> vector3;
+                switch (vector3Seleccionado) {
+                    case 1: vector3 = VA; break;
+                    case 2: vector3 = VB; break;
+                    case 3: vector3 = VC; break;
+                    case 4: vector3 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el tercer vector." << std::endl;
+                        break;
+                }
+
+                
+                std::vector<std::vector<float>> matrix = {
+                    {vector1[0], vector1[1], vector1[2]},
+                    {vector2[0], vector2[1], vector2[2]},
+                    {vector3[0], vector3[1], vector3[2]}
+                };
+
+                
+                float determinant = determinant3x3(matrix);
+
+                
+                float volume = std::abs(determinant) / 6.0;
+
+                std::cout << "El volumen del tetraedro definido por los tres vectores es: " << volume << "\n";
+                break;
+            }
+            case 4:
+            {
+                std::cout << "Seleccione el primer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector1Seleccionado;
+                std::cin >> vector1Seleccionado;
+
+                std::vector<float> vector1;
+                switch (vector1Seleccionado) {
+                    case 1: vector1 = VA; break;
+                    case 2: vector1 = VB; break;
+                    case 3: vector1 = VC; break;
+                    case 4: vector1 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el primer vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el segundo vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector2Seleccionado;
+                std::cin >> vector2Seleccionado;
+
+                std::vector<float> vector2;
+                switch (vector2Seleccionado) {
+                    case 1: vector2 = VA; break;
+                    case 2: vector2 = VB; break;
+                    case 3: vector2 = VC; break;
+                    case 4: vector2 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el segundo vector." << std::endl;
+                        break;
+                }
+
+                std::cout << "Seleccione el tercer vector:\n";
+                std::cout << "1. VA\n";
+                std::cout << "2. VB\n";
+                std::cout << "3. VC\n";
+                std::cout << "4. VD\n";
+                int vector3Seleccionado;
+                std::cin >> vector3Seleccionado;
+
+                std::vector<float> vector3;
+                switch (vector3Seleccionado) {
+                    case 1: vector3 = VA; break;
+                    case 2: vector3 = VB; break;
+                    case 3: vector3 = VC; break;
+                    case 4: vector3 = VD; break;
+                    default:
+                        std::cout << "Opcion no valida para el tercer vector." << std::endl;
+                        break;
+                }
+
+                
+                std::vector<std::vector<float>> matrix = {
+                    {vector1[0], vector1[1], vector1[2]},
+                    {vector2[0], vector2[1], vector2[2]},
+                    {vector3[0], vector3[1], vector3[2]}
+                };
+
+                
+                float determinant = determinant3x3(matrix);
+
+                
+                float volume = std::abs(determinant);
+
+                std::cout << "El volumen del paralelepipedo definido por los tres vectores es: " << volume << "\n";
+                break;
+            }
+                
+                break;
+
+            case 5:
+                
+                return; 
+
+            default:
+                std::cout << "Opcion no valida. Intente de nuevo.\n";
+        }
+    }
+
+
+}
+
+
+void posicion_relativa() {
+
+    std::cout << "Menu de posicion relativa:\n";
+    std::cout << "1. Recta y recta\n";
+    std::cout << "2. Recta y plano\n";
+    std::cout << "3. Plano y plano\n";
+    std::cout << "4. 3 planos\n";
+    std::cout << "5. Salir\n";
+    std::cout << "Seleccione una opcion: ";
+
+    int opcion;
+    std::cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+        {
+            std::cout << "Recta y recta\n";
+            // Implementar la lógica para recta y recta
+            break;
+        }
+        case 2:
+            std::cout << "Recta y plano\n";
+            // Implementar la lógica para recta y plano
+            break;
+        case 3:
+            std::cout << "Plano y plano\n";
+            // Implementar la lógica para plano y plano
+            break;
+        case 4:
+            std::cout << "3 planos\n";
+            // Implementar la lógica para 3 planos
+            break;
+        case 5:
+            return; 
+        default:
+            std::cout << "Opcion no valida. Intente de nuevo.\n";
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// SISTEMA LINEAL
+
+std::vector<std::vector<int>> matrix3x3(3, std::vector<int>(3));
+std::vector<std::vector<int>> matrix3x4(3, std::vector<int>(4));
+
+
+
+void sistema_lineal() {
+
+    void rouche_frobenius();
+    int calculateRango(std::vector<std::vector<int>>& matrix, int rows, int cols);
+    void solucionar_sistema();
+
+    menu_sistema:
+
+    std::cout << "Sistema Lineal\n";
+    std::cout << "1. Introducir ecuacion\n";
+    std::cout << "2. Realizar calculos\n";
+    std::cout << "3. Regresar al menu anterior\n";
+    std::cout << "Seleccione una opcion: ";
+
+    int opcion;
+    std::cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+        {
+            int A1, B1, C1, D1, A2, B2, C2, D2, A3, B3, C3, D3;
+
+            std::cout << "Introducir ecuacion:\n";
+            std::cout << "A1x + B1y + C1z = D1\n";
+            std::cout << "A2x + B2y + C2z = D2\n";
+            std::cout << "A3x + B3y + C3z = D3\n";
+            std::cout << "Introducir A1: ";
+            std::cin >> A1;
+            std::cout << "Introducir B1: ";
+            std::cin >> B1;
+            std::cout << "Introducir C1: ";
+            std::cin >> C1;
+            std::cout << "Introducir D1: ";
+            std::cin >> D1;
+            std::cout << "Introducir A2: ";
+            std::cin >> A2;
+            std::cout << "Introducir B2: ";
+            std::cin >> B2;
+            std::cout << "Introducir C2: ";
+            std::cin >> C2;
+            std::cout << "Introducir D2: ";
+            std::cin >> D2;
+            std::cout << "Introducir A3: ";
+            std::cin >> A3;
+            std::cout << "Introducir B3: ";
+            std::cin >> B3;
+            std::cout << "Introducir C3: ";
+            std::cin >> C3;
+            std::cout << "Introducir D3: ";
+            std::cin >> D3;
+
+            
+            matrix3x3 = {
+                {A1, B1, C1},
+                {A2, B2, C2},
+                {A3, B3, C3}
+            };
+
+            
+            matrix3x4 = {
+                {A1, B1, C1, D1},
+                {A2, B2, C2, D2},
+                {A3, B3, C3, D3}
+            };
+
+            std::cout<<matrix3x3[0][0]<<" "<<matrix3x3[0][1]<<" "<<matrix3x3[0][2]<<" "<<std::endl;
+            std::cout<<matrix3x3[1][0]<<" "<<matrix3x3[1][1]<<" "<<matrix3x3[1][2]<<" "<<std::endl;
+            std::cout<<matrix3x3[2][0]<<" "<<matrix3x3[2][1]<<" "<<matrix3x3[2][2]<<" "<<std::endl;
+            
+            std::cout<<matrix3x4[0][0]<<" "<<matrix3x4[0][1]<<" "<<matrix3x4[0][2]<<" "<<matrix3x4[0][3]<<std::endl;
+            std::cout<<matrix3x4[1][0]<<" "<<matrix3x4[1][1]<<" "<<matrix3x4[1][2]<<" "<<matrix3x4[1][3]<<std::endl;
+            std::cout<<matrix3x4[2][0]<<" "<<matrix3x4[2][1]<<" "<<matrix3x4[2][2]<<" "<<matrix3x4[2][3]<<std::endl;
+
+
+
+            goto menu_sistema;
+            break;
+        }
+        case 2:
+        {
+            std::cout << "Menu de calculos:\n";
+            std::cout << "1. Tipo de sistema\n";
+            std::cout << "2. Solucion del sistema\n";
+            std::cout << "3. Salir\n";
+            int calculoOpcion;
+            std::cin >> calculoOpcion;
+            switch (calculoOpcion) {
+                case 1:
+                    rouche_frobenius();
+                    goto menu_sistema;
+                    break;
+                case 2:
+                    solucionar_sistema();
+                    goto menu_sistema;
+                    break;
+                case 3:
+                    goto menu_sistema;
+                default:
+                    std::cout << "Opcion no valida. Intente de nuevo.\n";
+            }
+
+
+            break;
+        }
+        case 3:
+            break; 
+        default:
+            std::cout << "Opcion no valida. Intente de nuevo.\n";
+    }
+}
+
+int calculateRango(std::vector<std::vector<int>>& matrix, int rows, int cols) {
+    int rango = std::min(rows, cols); // Ensure rango does not exceed the smaller dimension
+    for (int row = 0; row < rango; ++row) {
+        if (matrix[row][row] != 0) {
+            for (int col = 0; col < rows; ++col) {
+                if (col != row) {
+                    float multiplier = static_cast<float>(matrix[col][row]) / matrix[row][row];
+                    for (int i = 0; i < cols; ++i) {
+                        matrix[col][i] -= static_cast<int>(multiplier * matrix[row][i]);
+                    }
+                }
+            }
+        } else {
+            bool reducir = true;
+            for (int i = row + 1; i < rows; ++i) {
+                if (matrix[i][row] != 0) {
+                    std::swap(matrix[row], matrix[i]);
+                    reducir = false;
+                    break;
+                }
+            }
+            if (reducir) {
+                --rango;
+                for (int i = 0; i < rows; ++i) {
+                    matrix[i][row] = matrix[i][rango];
+                }
+            }
+            --row;
+        }
+    }
+    return rango;
+}
+
+void rouche_frobenius() {
+    // Create copies of the matrices to avoid modifying the originals
+    std::vector<std::vector<int>> matrixA = matrix3x3;
+    std::vector<std::vector<int>> matrixA_prime = matrix3x4;
+
+    // Calculate ranks
+    int rankA = calculateRango(matrixA, 3, 3);
+    int rankA_prime = calculateRango(matrixA_prime, 3, 4);
+
+    // Determine compatibility
+    std::cout << "Rango of A: " << rankA << "\n";
+    std::cout << "Rango of A': " << rankA_prime << "\n";
+
+    if (rankA == rankA_prime) {
+        if (rankA == 3) {
+            std::cout << "Sistema compatible determinado.\n";
+        } else {
+            std::cout << "Sistema compatible indeterminado.\n";
+        }
+    } else {
+        std::cout << "Sistema incompatible.\n";
+    }
+}
+
+void solucionar_sistema() {
+   
+    std::vector<std::vector<float>> matrix3x3_float(3, std::vector<float>(3));
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            matrix3x3_float[i][j] = static_cast<float>(matrix3x3[i][j]);
+        }
+    }
+    float detA = determinant3x3(matrix3x3_float);
+    if (detA == 0) {
+        std::cout << "El sistema no tiene una solucion unica (determinante = 0).\n";
+        return;
+    }
+
+    
+    std::vector<std::vector<float>> Ax(3, std::vector<float>(3));
+    std::vector<std::vector<float>> Ay(3, std::vector<float>(3));
+    std::vector<std::vector<float>> Az(3, std::vector<float>(3));
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            Ax[i][j] = static_cast<float>(matrix3x3[i][j]);
+            Ay[i][j] = static_cast<float>(matrix3x3[i][j]);
+            Az[i][j] = static_cast<float>(matrix3x3[i][j]);
+        }
+    }
+
+ 
+    for (int i = 0; i < 3; ++i) {
+        Ax[i][0] = matrix3x4[i][3];
+        Ay[i][1] = matrix3x4[i][3];
+        Az[i][2] = matrix3x4[i][3];
+    }
+
+
+    float detAx = determinant3x3(Ax);
+    float detAy = determinant3x3(Ay);
+    float detAz = determinant3x3(Az);
+
+
+    float x = detAx / detA;
+    float y = detAy / detA;
+    float z = detAz / detA;
+
+
+    std::cout << "La solucion del sistema es:\n";
+    std::cout << "x = " << x << "\n";
+    std::cout << "y = " << y << "\n";
+    std::cout << "z = " << z << "\n";
+}
