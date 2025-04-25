@@ -352,7 +352,7 @@ void matrices() {
                     }
 
                     if (opcion == 6) {
-                        break; // Go back to the main menu
+                        break; 
                     }
                 }
                 break;
@@ -404,7 +404,7 @@ void IntroducirDatosMatrices() {
             continue;
         }
 
-        // Resize the selected matrix
+   
         if (index == 0) MatA.resize(rows[index], std::vector<float>(cols[index]));
         else if (index == 1) MatB.resize(rows[index], std::vector<float>(cols[index]));
         else if (index == 2) MatC.resize(rows[index], std::vector<float>(cols[index]));
@@ -481,44 +481,8 @@ void inverse2x2(const std::vector<std::vector<float>>& matrix, float det, std::v
     }
 }
 
-/*
 
-void inverse3x3(const std::vector<std::vector<float>>& matrix, float det, std::vector<std::vector<float>>& inv) {
-    inv.resize(3, std::vector<float>(3));
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            int sign;
-            if ((i + j) % 2 == 0) {
-                sign = 1;
-            } else {
-                sign = -1;
-            }
-            std::vector<std::vector<float>> minor(2, std::vector<float>(2));
-            int row = 0;
-            for (int r = 0; r < 3; ++r) {
-                if (r == i) continue;
-                int col = 0;
-                for (int c = 0; c < 3; ++c) {
-                    if (c == j) continue;
-                    minor[row][col] = matrix[r][c];
-                    ++col;
-                }
-                ++row;
-            }
-            inv[j][i] = sign * determinant2x2(minor) / det;
-        }
-    }
 
-    std::cout << "La inversa de la matriz es:" << std::endl;
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            std::cout << inv[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
-*/
 void adjointAndInverse3x3(const std::vector<std::vector<float>>& matrix, std::vector<std::vector<float>>& adj, std::vector<std::vector<float>>& inv) {
     float det = determinant3x3(matrix);
 
@@ -1004,7 +968,7 @@ void IntroducirPlanos() {
                 return;
         }
 
-        // Calculate the general equation of the plane
+      
         float A = vectorNormal[0];
         float B = vectorNormal[1];
         float C = vectorNormal[2];
@@ -1012,10 +976,10 @@ void IntroducirPlanos() {
 
         planeNormals[planoSeleccionado - 1] = vectorNormal;
 
-        // Store the equation as a string in the global variable
+        
         planoecuacion[planoSeleccionado - 1] = std::to_string(A) + "x + " + std::to_string(B) + "y + " + std::to_string(C) + "z + " + std::to_string(D) + " = 0";
 
-        // Output the equation
+       
         std::cout << "Plano Pla" << planoSeleccionado << " definido por:" << std::endl;
         std::cout << "Vector normal: (" << vectorNormal[0] << ", " << vectorNormal[1] << ", " << vectorNormal[2] << ")" << std::endl;
         std::cout << "Punto: (" << punto[0] << ", " << punto[1] << ", " << punto[2] << ")" << std::endl;
@@ -1079,13 +1043,13 @@ void IntroducirPlanos() {
             return;
         }
 
-        // Calculate the cross product of the two vectors to get the normal vector
+      
         std::vector<float> vectorNormal(3);
         vectorNormal[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
         vectorNormal[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
         vectorNormal[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
 
-        // Calculate the general equation of the plane
+    
         float A = vectorNormal[0];
         float B = vectorNormal[1];
         float C = vectorNormal[2];
@@ -1242,25 +1206,26 @@ void distancia() {
                 std::vector<float> linePoint = rectas[rectaIdx - 1][0];
                 std::vector<float> lineVector = rectas[rectaIdx - 1][1];
 
-                // Calculate the vector from the line point to the selected point
+                
+            
                 std::vector<float> lineToPoint(3);
                 for (int i = 0; i < 3; ++i) {
                     lineToPoint[i] = p[i] - linePoint[i];
                 }
 
-                // Calculate the cross product of lineVector and lineToPoint
+                
                 std::vector<float> crossProduct(3);
                 crossProduct[0] = lineVector[1] * lineToPoint[2] - lineVector[2] * lineToPoint[1];
                 crossProduct[1] = lineVector[2] * lineToPoint[0] - lineVector[0] * lineToPoint[2];
                 crossProduct[2] = lineVector[0] * lineToPoint[1] - lineVector[1] * lineToPoint[0];
 
-                // Calculate the magnitude of the cross product
+                
                 float crossMagnitude = sqrt(pow(crossProduct[0], 2) + pow(crossProduct[1], 2) + pow(crossProduct[2], 2));
 
-                // Calculate the magnitude of the line vector
+
                 float lineMagnitude = sqrt(pow(lineVector[0], 2) + pow(lineVector[1], 2) + pow(lineVector[2], 2));
 
-                // Calculate the distance
+               
                 float distance = crossMagnitude / lineMagnitude;
 
                 std::cout << "La distancia entre el punto y la recta es: " << distance << "\n";
@@ -1305,16 +1270,16 @@ void distancia() {
                     break;
                 }
 
-                // Calculate the distance using the plane's normal and equation
+               
                 float A = planeNormals[planoIdx - 1][0];
                 float B = planeNormals[planoIdx - 1][1];
                 float C = planeNormals[planoIdx - 1][2];
-                float D = -(A * PA[0] + B * PA[1] + C * PA[2]); // Assuming D is calculated from PA
+                float D = -(A * PA[0] + B * PA[1] + C * PA[2]); 
 
-                // Calculate the numerator: |Ax + By + Cz + D|
+               
                 float numerator = fabs(A * p[0] + B * p[1] + C * p[2] + D);
 
-                // Calculate the denominator: sqrt(A^2 + B^2 + C^2)
+                
                 float denominator = sqrt(A * A + B * B + C * C);
 
                 if (denominator == 0) {
@@ -1394,13 +1359,13 @@ void angulo() {
                         break;
                 }
 
-                // Calculate dot product
+
                 float dotProduct = 0;
                 for (int i = 0; i < 3; ++i) {
                     dotProduct += vector1[i] * vector2[i];
                 }
 
-                // Calculate magnitudes
+   
                 float magnitude1 = 0, magnitude2 = 0;
                 for (int i = 0; i < 3; ++i) {
                     magnitude1 += vector1[i] * vector1[i];
@@ -1409,7 +1374,7 @@ void angulo() {
                 magnitude1 = std::sqrt(magnitude1);
                 magnitude2 = std::sqrt(magnitude2);
 
-                // Calculate angle
+
                 if (magnitude1 == 0 || magnitude2 == 0) {
                     std::cout << "Uno de los vectores tiene magnitud cero, no se puede calcular el angulo.\n";
                     break;
@@ -1460,13 +1425,13 @@ void angulo() {
                         break;
                 }
 
-                // Calculate dot product
+  
                 float dotProduct = 0;
                 for (int i = 0; i < 3; ++i) {
                     dotProduct += vector[i] * planeNormal[i];
                 }
 
-                // Calculate magnitudes
+
                 float magnitudeVector = 0, magnitudePlaneNormal = 0;
                 for (int i = 0; i < 3; ++i) {
                     magnitudeVector += vector[i] * vector[i];
@@ -1475,7 +1440,6 @@ void angulo() {
                 magnitudeVector = std::sqrt(magnitudeVector);
                 magnitudePlaneNormal = std::sqrt(magnitudePlaneNormal);
 
-                // Calculate angle using arcsin
                 if (magnitudeVector == 0 || magnitudePlaneNormal == 0) {
                     std::cout << "El vector o el plano tiene magnitud cero, no se puede calcular el angulo.\n";
                     break;
@@ -1550,13 +1514,13 @@ void volumen_area() {
                         break;
                 }
 
-                // Calculate cross product
+           
                 std::vector<float> crossProduct(3);
                 crossProduct[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
                 crossProduct[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
                 crossProduct[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
 
-                // Calculate magnitude of the cross product (area)
+     
                 float area = std::sqrt(crossProduct[0] * crossProduct[0] + crossProduct[1] * crossProduct[1] + crossProduct[2] * crossProduct[2]);
 
                 std::cout << "El area del paralelogramo definido por los dos vectores es: " << area << "\n";
@@ -1603,13 +1567,12 @@ void volumen_area() {
                         break;
                 }
 
-                // Calculate cross product
+       
                 std::vector<float> crossProduct(3);
                 crossProduct[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
                 crossProduct[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
                 crossProduct[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
 
-                // Calculate magnitude of the cross product (area)
                 float area = std::sqrt(crossProduct[0] * crossProduct[0] + crossProduct[1] * crossProduct[1] + crossProduct[2] * crossProduct[2]);
 
                 std::cout << "El area del triangulo definido por los dos vectores es: " << (area/2) << "\n";
@@ -1788,11 +1751,9 @@ void volumen_area() {
 void posicion_relativa() {
 
     std::cout << "Menu de posicion relativa:\n";
-    std::cout << "1. Recta y recta\n";
-    std::cout << "2. Recta y plano\n";
-    std::cout << "3. Plano y plano\n";
-    std::cout << "4. 3 planos\n";
-    std::cout << "5. Salir\n";
+    std::cout << "1. Recta y plano\n";
+    std::cout << "2. plano y plano\n";
+    std::cout << "3. Salir\n";
     std::cout << "Seleccione una opcion: ";
 
     int opcion;
@@ -1801,23 +1762,94 @@ void posicion_relativa() {
     switch (opcion) {
         case 1:
         {
-            std::cout << "Recta y recta\n";
-            // Implementar la lógica para recta y recta
+            std::cout << "Seleccione la recta:\n";
+            std::cout << "1. R1\n";
+            std::cout << "2. R2\n";
+            std::cout << "3. R3\n";
+            std::cout << "4. R4\n";
+            int rectaSeleccionada;
+            std::cin >> rectaSeleccionada;
+
+            if (rectaSeleccionada < 1 || rectaSeleccionada > 4 || rectas[rectaSeleccionada - 1][1].empty()) {
+                std::cout << "Recta no valida o no definida.\n";
+                break;
+            }
+
+            std::vector<float> lineVector = rectas[rectaSeleccionada - 1][1];
+
+            std::cout << "Seleccione el plano:\n";
+            std::cout << "1. Pla1\n";
+            std::cout << "2. Pla2\n";
+            std::cout << "3. Pla3\n";
+            std::cout << "4. Pla4\n";
+            int planoSeleccionado;
+            std::cin >> planoSeleccionado;
+
+            if (planoSeleccionado < 1 || planoSeleccionado > 4 || planeNormals[planoSeleccionado - 1].empty()) {
+                std::cout << "Plano no valido o no definido.\n";
+                break;
+            }
+
+            std::vector<float> planeNormal = planeNormals[planoSeleccionado - 1];
+
+
+            float dotProduct = 0;
+            for (int i = 0; i < 3; ++i) {
+                dotProduct += lineVector[i] * planeNormal[i];
+            }
+
+            if (dotProduct == 0) {
+                std::cout << "La recta y el plano son paralelos.\n";
+            } else {
+                std::cout << "La recta y el plano se intersectan.\n";
+            }
             break;
         }
         case 2:
-            std::cout << "Recta y plano\n";
-            // Implementar la lógica para recta y plano
+        {
+            std::cout << "Seleccione el primer plano:\n";
+            std::cout << "1. Pla1\n";
+            std::cout << "2. Pla2\n";
+            std::cout << "3. Pla3\n";
+            std::cout << "4. Pla4\n";
+            int plano1Seleccionado;
+            std::cin >> plano1Seleccionado;
+
+            if (plano1Seleccionado < 1 || plano1Seleccionado > 4 || planeNormals[plano1Seleccionado - 1].empty()) {
+                std::cout << "Primer plano no valido o no definido.\n";
+                break;
+            }
+
+            std::vector<float> plane1Normal = planeNormals[plano1Seleccionado - 1];
+
+            std::cout << "Seleccione el segundo plano:\n";
+            std::cout << "1. Pla1\n";
+            std::cout << "2. Pla2\n";
+            std::cout << "3. Pla3\n";
+            std::cout << "4. Pla4\n";
+            int plano2Seleccionado;
+            std::cin >> plano2Seleccionado;
+
+            if (plano2Seleccionado < 1 || plano2Seleccionado > 4 || planeNormals[plano2Seleccionado - 1].empty()) {
+                std::cout << "Segundo plano no valido o no definido.\n";
+                break;
+            }
+
+            std::vector<float> plane2Normal = planeNormals[plano2Seleccionado - 1];
+
+
+            float ratioX = plane1Normal[0] / plane2Normal[0];
+            float ratioY = plane1Normal[1] / plane2Normal[1];
+            float ratioZ = plane1Normal[2] / plane2Normal[2];
+
+            if (ratioX == ratioY && ratioY == ratioZ) {
+                std::cout << "Los planos son paralelos.\n";
+            } else {
+                std::cout << "Los planos se intersectan.\n";
+            }
             break;
+        }
         case 3:
-            std::cout << "Plano y plano\n";
-            // Implementar la lógica para plano y plano
-            break;
-        case 4:
-            std::cout << "3 planos\n";
-            // Implementar la lógica para 3 planos
-            break;
-        case 5:
             return; 
         default:
             std::cout << "Opcion no valida. Intente de nuevo.\n";
@@ -1954,7 +1986,7 @@ void sistema_lineal() {
 }
 
 int calculateRango(std::vector<std::vector<int>>& matrix, int rows, int cols) {
-    int rango = std::min(rows, cols); // Ensure rango does not exceed the smaller dimension
+    int rango = std::min(rows, cols); 
     for (int row = 0; row < rango; ++row) {
         if (matrix[row][row] != 0) {
             for (int col = 0; col < rows; ++col) {
@@ -1987,17 +2019,15 @@ int calculateRango(std::vector<std::vector<int>>& matrix, int rows, int cols) {
 }
 
 void rouche_frobenius() {
-    // Create copies of the matrices to avoid modifying the originals
+    
     std::vector<std::vector<int>> matrixA = matrix3x3;
     std::vector<std::vector<int>> matrixA_prime = matrix3x4;
 
-    // Calculate ranks
     int rankA = calculateRango(matrixA, 3, 3);
     int rankA_prime = calculateRango(matrixA_prime, 3, 4);
 
-    // Determine compatibility
-    std::cout << "Rango of A: " << rankA << "\n";
-    std::cout << "Rango of A': " << rankA_prime << "\n";
+    std::cout << "Rango de A: " << rankA << "\n";
+    std::cout << "Rango de A': " << rankA_prime << "\n";
 
     if (rankA == rankA_prime) {
         if (rankA == 3) {
